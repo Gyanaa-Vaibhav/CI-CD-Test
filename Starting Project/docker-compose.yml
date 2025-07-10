@@ -1,0 +1,18 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    ports:
+      - $EXPOSE_PORT:$VITE_PORT
+    
+    env_file:
+      - .env
+
+    volumes:
+      - "/app/node_modules"
+    
+    container_name: test_container
+   
+  
