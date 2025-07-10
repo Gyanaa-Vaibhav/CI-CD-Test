@@ -5,8 +5,8 @@ jobs:
     runs-on: [self-hosted]
     steps:
       - name: Pull Code
-        uses: action/checkout@v4
-  
+        uses: actions/checkout@v4
+
       - name: Run docker container
         run: docker compose -f ./Starting\ Project/docker-compose-test.yml up --build -d
 
