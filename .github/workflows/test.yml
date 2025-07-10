@@ -17,6 +17,6 @@ jobs:
         run: npm run test
 
       - name: Clean Up
-        if: fail
+        if: always()
         run: docker compose down -v
       
