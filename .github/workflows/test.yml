@@ -14,5 +14,5 @@ jobs:
         run: docker exec -i test_container bash -c "npm run test"
 
       - name: Clean Up
-        if: failure()
+        if: always()
         run: docker compose down -v
