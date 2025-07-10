@@ -1,0 +1,22 @@
+name: test
+on: [push,workflow_dispatch]
+jobs:
+  test-run:
+    runs-on: [self-hosted]
+    steps:
+      - name: Pull Code
+        uses: actions/checkout@v4
+
+      - name: Run docker container
+        run: docker compose -f ./Starting\ Project/docker-compose-test.yml --env-file /env/test/.env up --build -d
+
+      - name: Enter into container
+        run: docker exec -it test_container bash
+
+      - name: Run test
+        run: npm run test
+
+      - name: Clean Up
+        if: always()
+        run: docker compose down -v
+      
