@@ -6,6 +6,6 @@ describe("Should test if ENV Exists and is visible", () => {
         console.log(import.meta.env.VITE_TEST)
         render(<App />);
 
-        expect(screen.getByRole("heading", { name: import.meta.env.VITE_TEST, exact: true })).not.toBeInTheDocument();
+        expect(screen.getByRole("heading", { name: import.meta.env.VITE_TEST, exact: true })).toBeInTheDocument();
     })
 })
