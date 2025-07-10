@@ -11,7 +11,7 @@ jobs:
         run: docker compose -f ./Starting\ Project/docker-compose-test.yml --env-file /env/test/.env up --build -d
 
       - name: Enter into container
-        run: docker exec -it test_container bash
+        run: docker exec -i test_container bash -c "npm run test"
 
       - name: Run test
         run: npm run test
