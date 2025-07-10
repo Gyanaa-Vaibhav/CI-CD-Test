@@ -1,4 +1,4 @@
-name: test
+name: CI_TEST
 on: [push,workflow_dispatch]
 jobs:
   test-run:
@@ -10,13 +10,9 @@ jobs:
       - name: Run docker container
         run: docker compose -f ./Starting\ Project/docker-compose-test.yml --env-file /env/test/.env up --build -d
 
-      - name: Enter into container
-        run: docker exec -it test_container bash
-
-      - name: Run test
-        run: npm run test
+      - name: Execute test
+        run: docker exec -i test_container bash -c "npm run test"
 
       - name: Clean Up
         if: always()
-        run: docker compose down -v
-      
+        run: docker compose -f ./Starting\ Project/docker-compose-test.yml --env-file /env/test/.env down -v
