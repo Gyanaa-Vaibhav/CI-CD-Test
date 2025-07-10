@@ -1,0 +1,15 @@
+name: Test
+on : workflow_dispatch
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print hello world
+      - run: echo "Hello World"
+
+      # - name: fail this test
+      # - run: exit 1
+
+      - name: Clean Up
+      - run: echo "clean up done everything off"
+ 
