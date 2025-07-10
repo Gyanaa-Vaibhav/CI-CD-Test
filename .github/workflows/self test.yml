@@ -1,0 +1,13 @@
+name: self-test
+on : workflow_dispatch
+jobs:
+  first-job:
+    runs-on: [self-hosted]
+    steps:
+      - name: print hello world
+        run: echo "Hello World"
+
+      - name: print ok bye
+        run : echo "Ok Bye!"
+
+ 
