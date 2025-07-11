@@ -1,8 +1,6 @@
 name: Validate docs-only changes
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
   push:
     branches:
       - docs
