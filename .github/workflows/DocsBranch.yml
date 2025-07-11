@@ -3,7 +3,7 @@ name: Validate docs-only changes
 on:
   push:
     branches:
-      - docs
+      - 'docs/*'
 
 jobs:
   check-files:
