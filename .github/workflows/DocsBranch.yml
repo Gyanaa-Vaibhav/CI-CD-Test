@@ -1,0 +1,30 @@
+name: Validate docs-only changes
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - docs
+
+jobs:
+  check-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Get list of changed files
+        id: files
+        run: |
+          echo "::set-output name=changed_files::$(git diff --name-only origin/main...HEAD)"
+      
+      - name: Check for forbidden file types
+        run: |
+          forbidden_files=$(echo "${{ steps.files.outputs.changed_files }}" | grep -E '\.(js|jsx|ts|tsx)$' || true)
+          if [ -n "$forbidden_files" ]; then
+            echo "Error: Forbidden source files changed:"
+            echo "$forbidden_files"
+            exit 1
+          else
+            echo "No forbidden files changed."
+          fi
